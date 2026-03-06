@@ -40,10 +40,8 @@ export class Portfolio implements OnInit {
         githubUrl: 'https://github.com/OrnellaTech/',
         mediaType: 'gallery',
         gallery: [
-          'assets/images/project1.png',
           'assets/images/project2.png',
-          'assets/images/project1.png',
-          'assets/images/project2.png',
+          'assets/images/project2_a.png',
         ]
       },
       {
