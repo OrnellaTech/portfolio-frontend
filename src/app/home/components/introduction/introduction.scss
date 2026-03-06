@@ -1,0 +1,140 @@
+
+
+/* Style général pour les boutons et le fond */
+button {
+    --green: #e8b1b7;
+    font-size: 15px;
+    padding: 0.7em 2.7em;
+    letter-spacing: 0.06em;
+    position: relative;
+    font-family: inherit;
+    border-radius: 0.6em;
+    overflow: hidden;
+    transition: all 0.3s;
+    line-height: 1.4em;
+    border: 2px solid var(--green);
+    background: linear-gradient(
+        to right,
+        rgba(243, 78, 22, 0.1) 1%,
+        transparent 40%,
+        transparent 60%,
+        rgba(243, 78, 22, 0.1) 100%
+    );
+    color: var(--green);
+    box-shadow:
+        inset 0 0 10px rgba(243, 78, 22, 0.4),
+        0 0 9px 3px rgba(243, 78, 22, 0.1);
+}
+
+button:hover {
+    color: #f07f81;
+    box-shadow:
+        inset 0 0 10px rgba(243, 78, 22, 0.6),
+        0 0 9px 3px rgba(243, 78, 22, 0.2);
+}
+
+button:before {
+    content: "";
+    position: absolute;
+    left: -4em;
+    width: 4em;
+    height: 100%;
+    top: 0;
+    transition: transform 0.4s ease-in-out;
+    background: linear-gradient(
+        to right,
+        transparent 1%,
+        rgba(243, 78, 22, 0.1) 40%,
+        rgba(243, 78, 22, 0.1) 60%,
+        transparent 100%
+    );
+}
+
+button:hover:before {
+    transform: translateX(15em);
+}
+/* Pour tous les écrans */
+.profile-img {
+    object-fit: contain; /* Empêche la coupure de l'image */
+    width: 100%;
+    height: auto;
+}
+
+/* Ajustement du conteneur principal */
+.home {
+    min-height: 100vh; /* Hauteur minimale pour éviter la compression */
+    padding-bottom: 50px; /* Espace en bas pour le contenu */
+}
+/* Style pour le fond en grille */
+.container-a {
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    --gap: 5em;
+    --line: 1px;
+    --color: rgba(255, 255, 255, 0.2);
+    background-image:
+        linear-gradient(
+            -90deg,
+            transparent calc(var(--gap) - var(--line)),
+            var(--color) calc(var(--gap) - var(--line) + 1px),
+            var(--color) var(--gap)
+        ),
+        linear-gradient(
+            0deg,
+            transparent calc(var(--gap) - var(--line)),
+            var(--color) calc(var(--gap) - var(--line) + 1px),
+            var(--color) var(--gap)
+        );
+    background-size: var(--gap) var(--gap);
+}
+
+/* Espacement supplémentaire pour éviter la confusion entre image et scroll */
+.scroll-down {
+    margin-bottom: 50px;
+}
+
+
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+  .home {
+        min-height: 120vh; /* Augmente la hauteur minimale pour mobile */
+        padding-top: 5px; /* Ajoute un espace en haut pour éviter le chevauchement avec le header */
+        padding-bottom: 80px; /* Ajoute un espace en bas pour plus de confort visuel */
+    }
+
+    .home-photo {
+        margin-top: 10px;
+        padding-bottom: 20px; /* Espace supplémentaire en bas pour éviter la coupure */
+        min-height: 350px; /* Hauteur minimale pour le conteneur de l'image */
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* Alignement en haut pour éviter les coupures */
+    }
+
+    .profile-img {
+        max-width: 300px;
+        max-height: 300px; /* Limite la hauteur pour éviter le débordement */
+        width: auto;
+        height: auto;
+        border-radius: 50%;
+        object-fit: contain; /* Garantit que l'image reste entière */
+        margin: 0 auto;
+        display: block;
+    }
+    
+    .introduction {
+        padding: 0 15px;
+        margin-top: 20px;
+    }
+
+    button {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .welcome_text {
+        margin-top: 40px !important;
+    }
+}

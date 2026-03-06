@@ -1,0 +1,111 @@
+
+<section class="portfolio" id="portfolio">
+  <div class="container">
+
+    <div class="section-title text-center mb-5">
+      <h2 class="text_background">
+        My Projects
+        <span class="heading_background">Portfolio</span>
+      </h2>
+      <p>{{ portfolio.intro }}</p>
+    </div>
+
+    <div class="row portfolio-items">
+
+      <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex" *ngFor="let project of portfolio.projects">
+        <div class="portfolio-item">
+          <div class="card">
+
+            <div class="image_container">
+              <img [src]="project.imageUrl" [alt]="project.title" class="image" />
+            </div>
+
+            <div class="title">➤ {{ project.title }}</div>
+            <div class="size">
+              <p>{{ project.description }}</p>
+            </div>
+
+            <div class="project-info">
+              <div class="info-item">
+                <span class="label">➤Role</span>
+                <span class="value">{{ project.role }}</span>
+              </div>
+
+              <div class="info-item">
+                <span class="label">➤Category</span>
+                <span class="value">{{ project.category }}</span>
+              </div>
+            </div>
+
+
+            <div class="size">
+              <!-- <p>Tools: </p> -->
+              <div class="tools">
+                <span class="tool" *ngFor="let tool of project.tools">
+                  {{ tool }}
+                </span>
+              </div>
+            </div>
+
+
+
+            <div class="size buttons">
+              <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank" class="btn-link">
+                View on GitHub
+              </a>
+
+              <a *ngIf="project.projectUrl" [href]="project.projectUrl" target="_blank" class="btn-link">
+                🌐 Live Demo
+              </a>
+
+              <a *ngIf="project.mediaUrl || project.gallery" (click)="selectedProject = project" class="btn-link" style="color: #e87e7e">
+                🎬 Voir interface
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <p *ngIf="portfolio.projects?.length === 0">
+        Aucun projet disponible.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<div class="media-modal" *ngIf="selectedProject" (click)="closeMedia()">
+
+ <div class="media-content" (click)="$event.stopPropagation()">
+
+    <span class="close" (click)="closeMedia()">✖</span>
+
+    <ng-container [ngSwitch]="selectedProject.mediaType">
+
+      <!-- IMAGE -->
+      <img *ngSwitchCase="'image'"
+           [src]="selectedProject.mediaUrl"
+           class="media-img">
+
+      <!-- VIDEO -->
+      <video *ngSwitchCase="'video'"
+             controls
+             autoplay
+             class="media-video">
+        <source [src]="selectedProject.mediaUrl" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- GALLERY -->
+      <div *ngSwitchCase="'gallery'" class="gallery">
+        <img *ngFor="let img of selectedProject.gallery"
+             [src]="img"
+             class="gallery-img">
+      </div>
+
+    </ng-container>
+
+  </div>
+
+</div>
