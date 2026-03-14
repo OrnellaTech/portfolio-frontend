@@ -1,17 +1,17 @@
 // home/components/portfolio/portfolio.ts
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { iPortofolio, iProject } from '../../../shared/models/portfolio';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../../../shared/service/UserService'; // Vérifie le chemin
+import { UserService } from '../../../shared/service/UserService'; 
 
 @Component({
   selector: 'app-portfolio',
-  standalone: true,  // IMPORTANT : Ajoute standalone: true
+  standalone: true,  
   imports: [CommonModule],
   templateUrl: './portfolio.html',
   styleUrl: './portfolio.scss',
 })
-export class Portfolio implements OnInit {
+export class Portfolio implements OnInit, OnChanges {
   @Input() userId!: number;  // Reçoit l'ID du parent
   
   selectedProject: iProject | null = null;
@@ -75,6 +75,18 @@ export class Portfolio implements OnInit {
     }
   }
 
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['userId'] && !changes['userId'].firstChange) {
+      const newUserId = changes['userId'].currentValue;
+      if(newUserId) {
+        this.loadUserProjects(newUserId);
+      } 
+    }
+     
+  }
+
+  // Chargement des projets de l'utilisateur
   private loadUserProjects(userId: number) {
     console.log('Portfolio - chargement des projets pour userId:', userId);
     

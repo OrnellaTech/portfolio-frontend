@@ -1,19 +1,19 @@
 // home/components/offer/offer.ts
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { iOffer } from '../../../shared/models/IOffer';
 import { OfferService } from '../../../shared/service/OfferService';  // ← Import OfferService
 
 @Component({
   selector: 'app-offer',
-  standalone: true,  
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './offer.html',
   styleUrl: './offer.scss',
 })
-export class Offer implements OnInit {
+export class Offer implements OnInit, OnChanges {
   @Input() userId!: number;
-  
+
   // Données par défaut (fallback)
   private readonly DEFAULT_OFFER: iOffer = {
     intro: "I offer a range of services to help you achieve your goals.",
@@ -39,36 +39,48 @@ export class Offer implements OnInit {
 
   offer: iOffer = { ...this.DEFAULT_OFFER };
 
-  constructor(private offerService: OfferService) {}  // ← Utilise OfferService
+  constructor(
+    private offerService: OfferService,
+  ) { } 
 
   ngOnInit() {
     console.log('Offer - userId reçu:', this.userId);
-    
+
     if (this.userId) {
       this.loadUserServices(this.userId);
     }
   }
-private loadUserServices(userId: number) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['userId'] && !changes['userId'].firstChange) {
+      const newUserId = changes['userId'].currentValue;
+      if (newUserId) {
+        this.loadUserServices(newUserId);
+      }
+    }
+  }
+
+  // Chargement des services de l'utilisateur
+  private loadUserServices(userId: number) {
     this.offerService.getAllOfferByUserId(userId).subscribe({
-        next: (services: any[]) => {  // ← ajoute : any[]
-            console.log('Offer - services reçus de l\'API:', services);
-            
-            if (services && services.length > 0) {
-                this.offer = {
-                    intro: this.DEFAULT_OFFER.intro,
-                    item: services.map((service: any) => ({  // ← ajoute : any
-                        nom: service.nom,
-                        detail: service.detail || 'Description non disponible'
-                    }))
-                };
-            } else {
-                this.offer = { ...this.DEFAULT_OFFER };
-            }
-        },
-        error: (err: any) => {  // ← ajoute : any
-            console.error('Offer - erreur:', err);
-            this.offer = { ...this.DEFAULT_OFFER };
+      next: (services: any[]) => {  // ← ajoute : any[]
+        console.log('Offer - services reçus de l\'API:', services);
+
+        if (services && services.length > 0) {
+          this.offer = {
+            intro: this.DEFAULT_OFFER.intro,
+            item: services.map((service: any) => ({  // ← ajoute : any
+              nom: service.nom,
+              detail: service.detail || 'Description non disponible'
+            }))
+          };
+        } else {
+          this.offer = { ...this.DEFAULT_OFFER };
         }
+      },
+      error: (err: any) => { //any sert à éviter les erreurs de typage dans la console
+        console.error('Offer - erreur:', err);
+        this.offer = { ...this.DEFAULT_OFFER };
+      }
     });
-}
+  }
 }
