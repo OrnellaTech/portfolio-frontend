@@ -247,7 +247,7 @@ header .site-logo a span {
 }
 
 /* 3.2 Horizontal Header Style */
-ul li a:after {
+ul li a:not(.dropdown-item):after {
   background-color: #f07f81;
 }
 
