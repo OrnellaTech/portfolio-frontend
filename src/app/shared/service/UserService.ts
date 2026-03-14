@@ -26,6 +26,11 @@ export class UserService {
     return this.baseService.get<iUser>(`http://127.0.0.1:8000/api/Utilisateur/${id}/`);
   }
 
+  //Récupérer tout les utilisateurs
+  getAllUsers(): Observable<any[]>{
+    return this.baseService.get<any[]>('http://127.0.0.1:8000/api/Utilisateur/');
+  }
+
    // Utilise ApiSocialLink ici, pas iSocialLink
     getAllSocialLinkByUserId(id: number): Observable<ApiSocialLink[]> {
         return this.baseService.get<ApiSocialLink[]>(`http://127.0.0.1:8000/api/SocialLink/${id}/`);
