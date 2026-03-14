@@ -10,7 +10,10 @@ export const routes: Routes = [
         path: '',
         component: Home
     },
-    { path: 'utilisateur/:id', component: UserPage }, // page utilisateur
+    { 
+        path: 'utilisateur/:id', 
+        component: UserPage 
+    }, // page utilisateur
     {
         path: 'not-Found',
         component: Notfound
@@ -20,10 +23,10 @@ export const routes: Routes = [
         redirectTo: 'not-Found',
     },
 
-    {
-        path: 'home',
-        redirectTo: 'home',
-    },
+    // {
+    //     path: 'home',
+    //     redirectTo: 'home',
+    // },
      
 ];
 

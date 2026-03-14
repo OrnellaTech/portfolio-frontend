@@ -37,6 +37,26 @@
                 <li>
                     <a href="#contact" class="nav-link">Contact</a>
                 </li>
+              <!-- header.html -->
+<li class="dropdown" [class.show]="dropdownOpen">
+    <a href="#" class="nav-link"
+       (click)="toggleDropdown(); $event.preventDefault()">
+      Changer d'utilisateur
+    </a>
+    <div class="dropdown-menu">
+          <a href="" class="dropdown-item"
+          >
+            Ornella Tech (Default User)
+        </a>
+
+        <a *ngFor="let user of users" 
+           class="dropdown-item" href="#"
+           (click)="switchUser(user.id); dropdownOpen = false; $event.preventDefault()">
+            {{ user.prenom }} {{ user.nom }}
+        </a>
+      
+    </div>
+</li>
             </ul>
             <!-- Main Navigation END -->
         </div>
