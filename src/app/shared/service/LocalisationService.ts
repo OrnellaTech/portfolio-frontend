@@ -19,9 +19,12 @@ export class LocalisationService {
                 .subscribe({
                     next: (response) => {
                         console.log('Localisation API response:', response);
+                        let loc: any | undefined;
+                    if (Array.isArray(response) && response.length > 0) {
+                        // Cherche la localisation correspondant exactement au userId
+                        loc = response.find(l => l.id === userId) || response[0];
+                    }
                         
-                        if (Array.isArray(response) && response.length > 0) {
-                            const loc = response[0];
                             observer.next({
                                 pays: loc.pays || 'Côte d\'Ivoire',
                                 ville: loc.ville || 'Grand-Bassam',
@@ -29,22 +32,20 @@ export class LocalisationService {
                                 latitude: loc.latitude || 0,
                                 quartier: loc.quartier || ''
                             });
-                        } else {
-                            observer.next({
-                                pays: 'Côte d\'Ivoire',
-                                ville: 'Grand-Bassam',
-                                longitude: 0,
-                                latitude: 0,
-                                quartier: ''
-                            });
-                        }
-                        observer.complete();
-                    },
-                    error: (err) => {
-                        console.error('Erreur localisation:', err);
-                        observer.error(err);
-                    }
-                });
+                            observer.complete();
+                        } , 
+                        error: (err) => {
+                    console.error('Erreur localisation:', err);
+                    observer.next({
+                        pays: 'Côte d\'Ivoire',
+                        ville: 'Grand-Bassam',
+                        longitude: 0,
+                        latitude: 0,
+                        quartier: ''
+                    });
+                    observer.complete();
+                }
+            });
         });
     }
 }
