@@ -3,11 +3,12 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../service/UserService';
 import { Router } from '@angular/router'
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
@@ -52,11 +53,12 @@ export class Header implements OnInit {
       },
       error: (err) => {
         console.error('Header - erreur chargement utilisateur:', err);
-    
+
       }
     });
   }
 
+  //methode pour charger tous les utilisateurs (pour le dropdown)
   private loadAllUsers() {
     this.userService.getAllUsers().subscribe({
       next: (users) => {
@@ -78,19 +80,19 @@ export class Header implements OnInit {
   switchUser(userId: number) {
     console.log('Header - switchUser appelé avec userId:', userId);
     if (userId === 0) {
-    this.router.navigate(['/']); // ← Redirige vers la page d'accueil
-    this.firstName = 'Ornella';
-    this.lastName = 'Tech';
-  } else {
-    this.router.navigate(['/utilisateur', userId]);
-    this.loadUserData(userId);
+      this.router.navigate(['/']); // ← Redirige vers la page d'accueil
+      this.firstName = 'Ornella';
+      this.lastName = 'Tech';
+    } else {
+      this.router.navigate(['/utilisateur', userId]);
+      this.loadUserData(userId);
+    }
+
+    this.dropdownOpen = false;
   }
-  
-  this.dropdownOpen = false;
-}
 
 
-   toggleDropdown() {
+  toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }
 

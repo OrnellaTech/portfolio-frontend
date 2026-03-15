@@ -4,22 +4,24 @@
         <div class="container">
             <!-- LOGO AREA - Dynamique avec prénom + nom -->
             <div class="site-logo">
-                <a href="#" class="hoveroff" title="">
+                <a *ngIf="userId; else defaultHome" [routerLink]="['/utilisateur', userId]" class="hoveroff" title="">
                     {{ firstName }}<span>{{ lastName }}</span>
                 </a>
+
+                <ng-template #defaultHome>
+                    <a routerLink="/" class="hoveroff">
+                        {{ firstName }}<span>{{ lastName }}</span>
+                    </a>
+                </ng-template>
             </div>
-            
-            <button class="button-toggler navbar-toggler collapsed" 
-                    type="button" 
-                    data-target="#navigation" 
-                    data-toggle="collapse" 
-                    aria-controls="navigation" 
-                    aria-expanded="false">
+
+            <button class="button-toggler navbar-toggler collapsed" type="button" data-target="#navigation"
+                data-toggle="collapse" aria-controls="navigation" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            
+
             <!-- Main Navigation START -->
             <ul class="justify-content-end scrollspy collapse navbar-collapse" id="navigation">
                 <li>
@@ -37,26 +39,23 @@
                 <li>
                     <a href="#contact" class="nav-link">Contact</a>
                 </li>
-              <!-- header.html -->
-<li class="dropdown" [class.show]="dropdownOpen">
-    <a href="#" class="nav-link"
-       (click)="toggleDropdown(); $event.preventDefault()">
-      Changer d'utilisateur
-    </a>
-    <div class="dropdown-menu">
-          <a href="" class="dropdown-item"
-          >
-            Ornella Tech (Default User)
-        </a>
+                <!-- header.html -->
+                <li class="dropdown" [class.show]="dropdownOpen">
+                    <a href="#header" class="nav-link" (click)="toggleDropdown(); $event.preventDefault()">
+                        Changer d'utilisateur
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">
+                            Ornella Tech (Default User)
+                        </a>
 
-        <a *ngFor="let user of users" 
-           class="dropdown-item" href="#"
-           (click)="switchUser(user.id); dropdownOpen = false; $event.preventDefault()">
-            {{ user.prenom }} {{ user.nom }}
-        </a>
-      
-    </div>
-</li>
+                        <a *ngFor="let user of users" class="dropdown-item"
+                            (click)="switchUser(user.id); dropdownOpen = false; $event.preventDefault()">
+                            {{ user.prenom }} {{ user.nom }}
+                        </a>
+
+                    </div>
+                </li>
             </ul>
             <!-- Main Navigation END -->
         </div>

@@ -1,12 +1,13 @@
 // shared/components/header/header.scss
 .site-logo {
     .first-name {
-        
+
         color: #ffffff;
     }
+
     .last-name {
-        
-        color: #e87e7e;  // Ou ta couleur de marque
+
+        color: #e87e7e; // Ou ta couleur de marque
         margin-left: 2px;
     }
 }
@@ -16,9 +17,9 @@
     display: none;
     position: absolute;
     background: rgb(255, 255, 255);
-    border: 1px solid rgba(0,0,0,.15);
+    border: 1px solid rgba(0, 0, 0, .15);
     border-radius: 4px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     min-width: 200px;
     padding: 8px 0;
@@ -41,7 +42,7 @@
     background: transparent;
     border: 0;
     cursor: pointer;
-    
+
     &:hover {
         background: #000000;
         color: #e87e7e;
