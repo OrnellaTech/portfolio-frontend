@@ -2,20 +2,20 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { iPortofolio, iProject } from '../../../shared/models/portfolio';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../../../shared/service/UserService'; 
+import { UserService } from '../../../shared/service/UserService';
 
 @Component({
   selector: 'app-portfolio',
-  standalone: true,  
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './portfolio.html',
   styleUrl: './portfolio.scss',
 })
 export class Portfolio implements OnInit, OnChanges {
   @Input() userId!: number;  // Reçoit l'ID du parent
-  
+
   selectedProject: iProject | null = null;
-  
+
   // Données par défaut
   private readonly DEFAULT_PORTFOLIO: iPortofolio = {
     intro: "Here are some of the projects I worked on.",
@@ -67,7 +67,7 @@ export class Portfolio implements OnInit, OnChanges {
 
   ngOnInit() {
     console.log('Portfolio - userId reçu:', this.userId);
-    
+
     if (this.userId) {
       this.loadUserProjects(this.userId);
     } else {
@@ -79,20 +79,20 @@ export class Portfolio implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['userId'] && !changes['userId'].firstChange) {
       const newUserId = changes['userId'].currentValue;
-      if(newUserId) {
+      if (newUserId) {
         this.loadUserProjects(newUserId);
-      } 
+      }
     }
-     
+
   }
 
   // Chargement des projets de l'utilisateur
   private loadUserProjects(userId: number) {
     console.log('Portfolio - chargement des projets pour userId:', userId);
-    
+
     this.userService.getUserProjects(userId).subscribe({
       next: (apiProjects: any[]) => {
-         console.log('Portfolio - projets reçus de l\'API:', JSON.stringify(apiProjects, null, 2));
+        console.log('Portfolio - projets reçus de l\'API:', JSON.stringify(apiProjects, null, 2));
         if (apiProjects && apiProjects.length > 0) {
           // Transformer les projets API en format iProject
           this.portfolio = {
@@ -118,7 +118,7 @@ export class Portfolio implements OnInit, OnChanges {
       },
       error: (err) => {
         console.error('Portfolio - erreur chargement:', err);
-        // Garder les données par défaut
+        
       }
     });
   }

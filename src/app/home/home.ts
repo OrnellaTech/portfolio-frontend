@@ -1,4 +1,4 @@
-import { Component, HostListener  } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Header } from '../shared/components/header/header';
 import { Footer } from '../shared/components/footer/footer';
 import { About } from './components/about/about';
@@ -17,20 +17,20 @@ import { Resume } from './components/resume/resume';
 @Component({
   selector: 'app-home',
   imports: [
-   Header,
-   Footer,
-   About,
-  //  Blog,
-  //  Fact,
-   Introduction,
-   Portfolio,
-   Offer,
-  //  Testimonial,
-  //  Video,
-   Contact,
-   Preloader,
-  //  Project,
-  //  Resume
+    Header,
+    Footer,
+    About,
+    //  Blog,
+    //  Fact,
+    Introduction,
+    Portfolio,
+    Offer,
+    //  Testimonial,
+    //  Video,
+    Contact,
+    Preloader,
+    //  Project,
+    //  Resume
 
 
 
@@ -40,7 +40,7 @@ import { Resume } from './components/resume/resume';
   styleUrl: './home.scss',
 })
 export class Home {
-  
+
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
     const glow = document.querySelector('.cursor-glow') as HTMLElement;

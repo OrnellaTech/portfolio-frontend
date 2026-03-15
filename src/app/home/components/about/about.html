@@ -1,7 +1,6 @@
-
 <section id="about" class="about about-section py-5">
- 
- 
+
+
   <!-- Intro -->
   <div class="container">
     <div class="row justify-content-center">
@@ -23,8 +22,7 @@
 
         <div class="about-table table-responsive mb-4" *ngIf="about.skills.length || about.contacts.length">
 
-        <!-- Rien de rien -->
-        <!-- <pre>{{ about | json }}</pre> -->
+          <!-- <pre>{{ about | json }}</pre> -->
           <table class="table table-borderless align-middle">
             <tbody>
               <tr *ngFor="let skill of about.skills">
@@ -39,8 +37,6 @@
             </tbody>
           </table>
         </div>
-
-
 
       </div>
 
@@ -72,12 +68,9 @@
 
           <div class="card">
             <img *ngIf="tech.type === 'img'" [src]="tech.icon" [alt]="tech.alt" />
-            <!-- SVG inline (si tu veux plus tard) -->
-           <!-- SVG inline -->
-            <span
-              *ngIf="tech.type === 'svg'"
-              class="svg-icon"
-              [innerHTML]="sanitizeSvg(tech.icon)">
+
+            <!-- SVG inline -->
+            <span *ngIf="tech.type === 'svg'" class="svg-icon" [innerHTML]="sanitizeSvg(tech.icon)">
             </span>
           </div>
         </div>
