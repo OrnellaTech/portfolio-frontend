@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { iUser } from "../models/IUser";
 
-// Définis le type directement dans le service
+// type pour les liens sociaux de l'API, différent de iSocialLink car l'API peut retourner des champs supplémentaires ou différents
 export interface ApiSocialLink {
   id?: number;
   nom: string;
@@ -14,33 +14,33 @@ export interface ApiSocialLink {
 }
 
 @Injectable({
-    providedIn:"root"
+  providedIn: "root"
 })
 
 export class UserService {
 
-    private baseService = inject(BaseService);
+  private baseService = inject(BaseService);
 
-      // Récupérer l'utilisateur complet depuis le back
+  // Récupérer l'utilisateur complet depuis le back
   getUser(id: number): Observable<iUser> {
     return this.baseService.get<iUser>(`http://127.0.0.1:8000/api/Utilisateur/${id}/`);
   }
 
   //Récupérer tout les utilisateurs
-  getAllUsers(): Observable<any[]>{
+  getAllUsers(): Observable<any[]> {
     return this.baseService.get<any[]>('http://127.0.0.1:8000/api/Utilisateur/');
   }
 
-   // Utilise ApiSocialLink ici, pas iSocialLink
-    getAllSocialLinkByUserId(id: number): Observable<ApiSocialLink[]> {
-        return this.baseService.get<ApiSocialLink[]>(`http://127.0.0.1:8000/api/SocialLink/${id}/`);
-    }
+  // Utilise ApiSocialLink ici, pas iSocialLink
+  getAllSocialLinkByUserId(id: number): Observable<ApiSocialLink[]> {
+    return this.baseService.get<ApiSocialLink[]>(`http://127.0.0.1:8000/api/SocialLink/${id}/`);
+  }
 
   // shared/service/UserService.ts
- getUserProjects(userId: number): Observable<any[]> {
-        return this.baseService.get<any[]>(`http://127.0.0.1:8000/api/Projet/?utilisateur=${userId}`);
-    }
+  getUserProjects(userId: number): Observable<any[]> {
+    return this.baseService.get<any[]>(`http://127.0.0.1:8000/api/Projet/?utilisateur=${userId}`);
+  }
 
-    
-      
+
+
 }

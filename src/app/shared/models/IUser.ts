@@ -1,14 +1,14 @@
 export interface iUser {
     nom: string,
-    prenom : string,
+    prenom: string,
     photo_profil: string,
-    photo_intro : string,
-    description : string, 
-    age : number,
+    photo_intro: string,
+    description: string,
+    age: number,
     email: string,
-    telephone : string, 
-    lien_cv : string,
-     skills_fk?: Array<{
+    telephone: string,
+    lien_cv: string,
+    skills_fk?: Array<{
         id?: number;
         label: string;
         value: string;
