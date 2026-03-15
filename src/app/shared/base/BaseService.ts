@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
     providedIn:"root"
 })
 export class BaseService {
-
+    // Injection du HttpClient pour faire les appels API
     constructor(private http: HttpClient) {}
 
     save<T>(url: string, data: any): Observable<T> {
@@ -28,4 +28,3 @@ export class BaseService {
     }
     
 }
-//  maniere de faire une injection soit par le constructeur soit par un attribut privé

@@ -4,7 +4,7 @@ import { iExperience } from "../models/IExperience";
 import { Injectable } from "@angular/core";
 
 @Injectable({
-    providedIn:"root"
+    providedIn: "root"
 })
 
 export class ExperienceService {
@@ -12,8 +12,8 @@ export class ExperienceService {
 
     private baseService = inject(BaseService);
 
-    getAllExperienceByUserId(id:number): iExperience[]{
+    getAllExperienceByUserId(id: number): iExperience[] {
         return [] as iExperience[]
     }
-      
+
 }

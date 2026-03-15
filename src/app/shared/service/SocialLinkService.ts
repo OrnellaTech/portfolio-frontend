@@ -10,7 +10,7 @@ import { Injectable } from "@angular/core";
 export class SocialLinkService {
 
     private baseService = inject(BaseService);
-
+    // Récupérer les liens sociaux d'un utilisateur
     getAllSocialLinkByUserId(id:number): iSocialLink[]{
         return [] as iSocialLink[]
     }
