@@ -13,7 +13,7 @@ import { UserService } from '../../service/UserService';  // Importe UserService
 })
 export class Footer implements OnInit {
   @Input() userId!: number;
-   currentYear: number = new Date().getFullYear(); 
+  currentYear: number = new Date().getFullYear();
   private readonly DEFAULT_FOOTER: iFooter = {
     copyright_author: "OrnellaTech",
     icons: [
@@ -24,7 +24,7 @@ export class Footer implements OnInit {
 
   footer: iFooter = { ...this.DEFAULT_FOOTER };
 
-  constructor(private userService: UserService) {}  // Utilise UserService
+  constructor(private userService: UserService) { }  // Utilise UserService
 
   ngOnInit() {
     if (this.userId) {
@@ -32,11 +32,11 @@ export class Footer implements OnInit {
     }
   }
 
-    private loadUserSocialLinks(userId: number) {
+  private loadUserSocialLinks(userId: number) {
     this.userService.getUser(userId).subscribe({
       next: (user) => {
         console.log('Footer - utilisateur reçu:', user);
-        
+
         // Uniquement les réseaux sociaux
         if (user.sociallinks && user.sociallinks.length > 0) {
           this.footer.icons = user.sociallinks.map(link => ({

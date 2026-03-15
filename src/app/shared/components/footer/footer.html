@@ -1,29 +1,26 @@
- <footer class="horizontal-footer shadow-footer">
-            <div class="container">
-                <div class="row justify-content-center text-center">
-                    <div class="col-md-12">
-                        <div class="text-center">
-                            <ul class="social-icons list-inline mt-5">
-                               
-                                <li class="list-inline-item" *ngFor = "let social of footer.icons">
-                                    <a [href]="social.url" target="_blank">
-                                        <i [class]="social.icon"></i>
-                                    </a>
-                                </li>
-                               
-                                <!-- <li class="list-inline-item">
-                                    <a href="#">
-                                        <i class="fab fa-git"></i>
-                                    </a>
-                                </li> -->
-                                
-                            </ul>
-                            <p class="copyright-text mt-3 mb-5">&copy; {{ currentYear }} {{ footer.copyright_author }}. Tous droits réservés.
-                        </div>
-                    </div>
-                </div> 
+<footer class="horizontal-footer shadow-footer">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <ul class="social-icons list-inline mt-5">
+
+                        <li class="list-inline-item" *ngFor="let social of footer.icons">
+                            <a [href]="social.url" target="_blank">
+                                <i [class]="social.icon"></i>
+                            </a>
+                        </li>
+
+
+
+                    </ul>
+                    <p class="copyright-text mt-3 mb-5">&copy; {{ currentYear }} <a href="#"><span>{{ footer.copyright_author }}.</span></a> Tous
+                        droits réservés.
+                </div>
             </div>
-               
-               
-           
-        </footer>
+        </div>
+    </div>
+
+
+
+</footer>
