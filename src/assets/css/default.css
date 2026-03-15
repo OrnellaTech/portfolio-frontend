@@ -37,6 +37,7 @@ Table of Content
 ==================*/
 a:hover {
   color: #f07f81;
+  text-decoration: underline;
 }
 
 /* 1.1 Preloader  */
