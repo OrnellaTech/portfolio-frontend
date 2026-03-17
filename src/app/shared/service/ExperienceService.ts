@@ -2,18 +2,15 @@ import { inject } from "@angular/core";
 import { BaseService } from "../base/BaseService";
 import { iExperience } from "../models/IExperience";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
 
-@Injectable({
-    providedIn: "root"
-})
-
+@Injectable({ providedIn: "root" })
 export class ExperienceService {
+  private baseService = inject(BaseService);
+  private apiUrl = environment.apiUrl;
 
-
-    private baseService = inject(BaseService);
-
-    getAllExperienceByUserId(id: number): iExperience[] {
-        return [] as iExperience[]
-    }
-
+  getAllExperienceByUserId(id: number): Observable<iExperience[]> {
+    return this.baseService.get<iExperience[]>(`${this.apiUrl}/Experience/?utilisateur=${id}`);
+  }
 }

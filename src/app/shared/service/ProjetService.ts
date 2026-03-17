@@ -2,19 +2,15 @@
 import { BaseService } from "../base/BaseService";
 import { inject, Injectable } from "@angular/core";
 import { iProjet } from "../models/IProjet";
+import { environment } from "../../../environments/environment";
+import { Observable } from "rxjs";
 
-@Injectable({
-    providedIn:"root"
-})
-
+@Injectable({ providedIn: "root" })
 export class ProjetService {
+  private baseService = inject(BaseService);
+  private apiUrl = environment.apiUrl;
 
-    // Injection du BaseService pour faire les appels API
-    private baseService = inject(BaseService);
-
-    // Récupérer les projets d'un utilisateur
-    getAllProjetById(id:number): iProjet{
-        return {} as iProjet
-    }
-      
+  getAllProjetById(id: number): Observable<iProjet[]> {
+    return this.baseService.get<iProjet[]>(`${this.apiUrl}/Projet/?utilisateur=${id}`);
+  }
 }
