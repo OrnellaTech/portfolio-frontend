@@ -37,7 +37,7 @@ export class About implements OnInit, OnChanges {
       { label: 'Contact', value: '+225 07 10 17 28 41' }
     ],
     image: 'assets/images/about-person.jpeg',
-    cvUrl: '#',
+    cvUrl: 'assets/cv/Ornella_Koffi_CV.pdf',
     socials: [
       { icon: 'fab fa-linkedin-in', url: 'https://www.linkedin.com/in/ornella-marie-h%C3%A9l%C3%A8ne-moyh%C3%A9-koffi-113035338/' },
       { icon: 'fab fa-github', url: 'https://github.com/OrnellaTech/' }

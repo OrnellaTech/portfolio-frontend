@@ -44,7 +44,7 @@
       <div class="col-12 col-lg-6 mb-3 about-visual text-center justify-content-center">
         <img [src]="about.image" alt="About Me" class="img-fluid rounded mb-3">
         <div class="button-and-social flex-column  align-items-center gap-3">
-          <a [href]="about.cvUrl" class="btn btn-outline-primary btn-lg">Download CV</a>
+          <a [href]="about.cvUrl" download="Ornella_CV.pdf" class="btn btn-outline-primary btn-lg">Download CV</a>
           <ul class="social-icons list-inline m-0">
             <li class="list-inline-item" *ngFor="let social of about.socials">
               <a [href]="social.url" target="_blank">
