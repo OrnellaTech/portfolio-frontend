@@ -40,21 +40,27 @@
                     <a href="#contact" class="nav-link">Contact</a>
                 </li>
                 <!-- header.html -->
-                <li class="dropdown" [class.show]="dropdownOpen">
-                    <a href="#header" class="nav-link" (click)="toggleDropdown(); $event.preventDefault()">
-                        Changer d'utilisateur
+              <li class="dropdown" [class.show]="dropdownOpen">
+                <a href="#header" class="nav-link"
+                    (click)="toggleDropdown(); $event.preventDefault()">
+                    Changer d'utilisateur
+                </a>
+
+                <div class="dropdown-menu">
+
+                    <a class="dropdown-item text-muted" *ngIf="!backendAvailable">
+                    ⚠ Mode démo - fonctionnalité désactivée
                     </a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">
-                            Ornella Tech (Default User)
-                        </a>
 
-                        <a *ngFor="let user of users" class="dropdown-item"
-                            (click)="switchUser(user.id); dropdownOpen = false; $event.preventDefault()">
-                            {{ user.prenom }} {{ user.nom }}
-                        </a>
+                   
+                    <a *ngFor="let user of users"
+                        class="dropdown-item"
+                        (click)="switchUser(user.id); dropdownOpen = false; $event.preventDefault()">
+                        {{ user.prenom }} {{ user.nom }}
+                    </a>
+                 
 
-                    </div>
+                </div>
                 </li>
             </ul>
             <!-- Main Navigation END -->

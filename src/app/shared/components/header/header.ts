@@ -22,6 +22,14 @@ export class Header implements OnInit {
 
   //Liste de tous les utilisateurs
   users: any[] = [];
+  // demoMode = true;
+  backendAvailable = true;
+
+  private readonly defaultUser = {
+    id: 0,
+    prenom: 'Ornella',
+    nom: 'Tech'
+  };
 
   dropdownOpen: boolean = false;
 
@@ -64,13 +72,12 @@ export class Header implements OnInit {
       next: (users) => {
         console.log('Header - tous les utilisateurs reçus:', users);
         this.users = users;
+        this.backendAvailable = true;
       },
       error: (err) => {
         console.error('Header - erreur chargement de tous les utilisateurs:', err);
-
-        this.users = [
-          { id: 0, prenom: 'Nothing ', nom: 'to see' }
-        ];
+        this.users = [this.defaultUser];
+        this.backendAvailable = false;
       }
     });
 
